@@ -75,16 +75,3 @@ private:
 	int nrIngrediente;
 	vector<Ingredient>Ingr;
 };
-
-
-
-
-class Mama {
-public: 
-
-	int getvar() {
-		return var;
-	};
-private: 
-	int var = 6;
-};
