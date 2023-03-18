@@ -7,6 +7,7 @@ using namespace std;
 class Ingredient {
 public:
 	Ingredient() { };
+
 	Ingredient(string altNume, float altPret, int altaCantitate) {
 		nume = altNume;
 		pret = altPret;
@@ -43,6 +44,7 @@ public:
 		nume = i.nume;
 		pret = i.pret;
 		cantitate = i.cantitate;
+		return *this;
 	}
 private:
 	string nume;
@@ -60,15 +62,35 @@ public:
 	{
 		denumire = altaDenumire;
 	}
+	
+	friend istream& operator >>(istream& in, Pizza& p)
+	{
+		cout << "Denumire Pizza:";
+		in >> p.denumire;
+		return in;
+	}
+	friend ostream& operator <<(ostream& out, const Pizza& p)
+	{
+		out << p.denumire << '\n' << p.nrIngrediente<<'\n';
+		for (int i = 0; i < p.nrIngrediente; i++)
+		{
+			out<<p.Ingr[i];
+		}
+		return out;
+	}
 	Pizza& operator =(const Pizza& p)
 	{
 		denumire = p.denumire;
 		nrIngrediente = p.nrIngrediente;
 		Ingr = p.Ingr;
+		return *this;
 	}
-
-
-
+	Pizza& operator +(const Ingredient& i)
+	{
+		Ingr.push_back(i);
+		nrIngrediente = size(Ingr);
+		return *this;
+	}
 
 private:
 	string denumire;
