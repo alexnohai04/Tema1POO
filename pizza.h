@@ -71,11 +71,12 @@ public:
 	}
 	friend ostream& operator <<(ostream& out, const Pizza& p)
 	{
-		out << p.denumire << '\n' << p.nrIngrediente<<'\n';
+		out <<"\nDenumire:\n"<< p.denumire <<"\nNumar de Ingrediente:\n"<< p.nrIngrediente <<"\nIngredientele:\n";
 		for (int i = 0; i < p.nrIngrediente; i++)
 		{
-			out<<p.Ingr[i];
+			out << p.Ingr[i];
 		}
+		out << "\n";
 		return out;
 	}
 	Pizza& operator =(const Pizza& p)
@@ -91,7 +92,13 @@ public:
 		nrIngrediente = size(Ingr);
 		return *this;
 	}
-
+	bool operator >(const Pizza& p)
+	{
+		if (nrIngrediente > p.nrIngrediente)
+			return true;
+		else
+			return false;
+	}
 private:
 	string denumire;
 	int nrIngrediente;
